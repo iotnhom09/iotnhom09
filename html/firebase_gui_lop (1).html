@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body style="text-align: center;">
+	<!-- Giao diện -->
+	<h3>ID:</h3> 
+	<input id="enterID" type="text"> <br>
+	<h3>Value1:</h3>
+	<input id="enterV1" type="text"> <br> 
+	<h3>Value2:</h3>
+	<input id="enterV2" type="text"> <br> <br>
+
+	<button type="button" id="InsertBtn" >Insert Data</button> <br><br>
+	<button type="button" id="UpdateBtn" >Update Data</button> <br><br>
+	<button type="button" id="FindBtn" >Find Data</button> <br><br>
+	<button type="button" id="RemoveBtn" >Remove Data</button> <br><br>
+
+	<h3 id="findValue1" type="number"></h3>
+    <h3 id="findValue2" type="number"></h3> <br><br>
+
+    <!-- Javascript -->
+	<script type="module">
+  	// Import the functions you need from the SDKs you need
+
+  	// Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCWBbxCGjk8Yqm66ZwzHumTs937X6LjkYQ",
+    authDomain: "kc326-74cbb.firebaseapp.com",
+    databaseURL: "https://kc326-74cbb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "kc326-74cbb",
+    storageBucket: "kc326-74cbb.appspot.com",
+    messagingSenderId: "670991606233",
+    appId: "1:670991606233:web:2ba189f8fcb143f74b39c8"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+	  	import { getDatabase, set, get, update, remove, ref, child} from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+		const db = getDatabase();
+
+		var insertBtn = document.getElementById("InsertBtn");
+		var updateBtn = document.getElementById("UpdateBtn");
+		var findBtn = document.getElementById("FindBtn");
+		var removeBtn = document.getElementById("RemoveBtn");
+
+		var id = document.getElementById("enterID");
+		var v1 = document.getElementById("findValue1");
+		var v2 = document.getElementById("findValue2");
+		var enterV1 = document.getElementById("enterV1");
+		var enterV2 = document.getElementById("enterV2");
+
+		function InsertData() {
+	        set(ref(db, "Thing/"+ id.value),{
+	            	Value1: enterV1.value,
+	            	Value2: enterV2.value,
+	        })
+	       	.then(()=>{
+	           	console.log("Data added successfully");
+	        })
+	       	.catch((error)=>{
+	          	console.log(error);
+	        });
+	    }
+
+	    function UpdateData(){
+	        update(ref(db, "Thing/"+ id.value),{
+	            Value1: enterV1.value,
+	            Value2: enterV2.value,
+	        })
+	        .then(()=>{
+	            console.log("Data updated successfully");
+	        })
+	        .catch((error)=>{
+	            console.log(error);
+	        });
+	    }
+	    
+	    function RemoveData(){
+	        remove(ref(db, "Thing/"+ id.value))
+	        .then(()=>{
+	            console.log("Data deleted successfully");
+	        })
+	        .catch((error)=>{
+	    	    console.log(error);
+	        });
+	    }
+	    
+	    function FindData() {
+	        const dbref = ref(db);
+	        get(child(dbref, "Thing/"+ id.value))
+	        .then((snapshot)=>{
+	            if(snapshot.exists()){
+	                v1.innerHTML = "Value1: " + snapshot.val().Value1;
+	                v2.innerHTML = "Value2: " + snapshot.val().Value2;
+	            } else {
+	                console.log("No data found");
+	            }
+	        })
+	        .catch((error)=>{
+	            console.log(error)
+	        })
+	    }
+
+	    //thiết lập hàm callback cho các button
+	    insertBtn.addEventListener('click', InsertData);
+	    updateBtn.addEventListener('click', UpdateData);
+	    findBtn.addEventListener('click', FindData);
+	    removeBtn.addEventListener('click', RemoveData);
+
+	</script>
+
+</body>
+</html>
