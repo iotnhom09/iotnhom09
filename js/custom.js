@@ -112,8 +112,9 @@
       }
   });
 
-  //wheather app
   
+
+
 	
 
 	// Window Resize Mobile Menu Fix
