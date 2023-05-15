@@ -114,7 +114,7 @@
 
   //wheather app
   // state
-let currCity = "London";
+let currCity = "Cần Thơ";
 let units = "metric";
 
 // Selectors
