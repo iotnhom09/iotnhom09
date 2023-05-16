@@ -89,6 +89,92 @@
       </nav>
     </header>
 
+    <div class="house1" style="padding-top: 10%;">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5">
+              <div
+                class="section-heading wow fadeInLeft"
+                data-wow-duration="1s"
+                data-wow-delay="0.3s"
+              >
+                <h6 style="font-size: 35px;">Control House 1</h6>
+                <h4>Cần Thơ</h4>
+                <div class="line-dec"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div
+      class="container"
+      id="container-control section"
+
+      style="padding-top: 20px"
+    >
+      <div class="control">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="control-fan col">
+              <div class="container-fan">
+                <img src="../image/cover.png" alt="" class="cover" />
+                <img src="../image/blades.png" alt="" class="blades" />
+
+                <div class="controls d-flex justify-content-center" >
+                  <button class="btn btn-0 active" data-nav="0">OFF</button>
+                  <button class="btn btn-1" data-nav="1">1</button>
+                  <button class="btn btn-2" data-nav="2">2</button>
+                  <button class="btn btn-3" data-nav="3">3</button>
+                </div>
+              </div>
+            </div>
+              <div class="col d-flex align-items-center">
+                <div class="Cot1 justify-content-center">
+                  <table class="tengicungduoc">
+                    <tr>
+                      <h3 id="readTemp" type="number"></h3>
+                    </tr>
+                    <tr>
+                      <h3 id="readHumid" type="number"></h3>
+                    </tr>
+                    <tr>
+                      <label for="points">Set nhiệt độ (19-24):</label>
+                      <input
+                        type="range"
+                        id="points"
+                        name="points"
+                        min="19"
+                        max="24"
+                      />
+                      <button type="button" id="UpdateBtn" onclick="light()">
+                        Update Data
+                      </button>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!-- Cot2  -->
+              <div class="col">
+                <!-- Bóng đèn -->
+                <img
+                  id="lighbulb"
+                  src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/93927/pic_bulboff.gif"
+                  width="200"
+                  height="360"
+                />
+                <!-- nút nhấn bật tắt đèn -->
+                <!-- onclick="changeImage()" -->
+                <button type="button" id="lightbtn">
+                  Bật/Tắt đèn
+                </button>
+              </div>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- từ dòng 125 đến dòng 148 là cho phần hiển thị và điều khiển -->
     <footer class="text-center text-dark" style="background-color: #c9f4aa">
       <!-- Grid container -->
       <div class="container">
@@ -167,27 +253,7 @@
       </div>
       <!-- Copyright -->
     </footer>
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
 
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyAhmxpPpUAew43YxdCdyOKTlWImK4vQZk4",
-        authDomain: "iot-nhom09.firebaseapp.com",
-        databaseURL:
-          "https://iot-nhom09-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "iot-nhom09",
-        storageBucket: "iot-nhom09.appspot.com",
-        messagingSenderId: "259064012889",
-        appId: "1:259064012889:web:4ab5d9256b45656105d148",
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-    </script>
     <script src="https://cdn.rawgit.com/matthieua/WOW/1.0.1/dist/wow.min.js"></script>
     <script>
       new WOW().init();
@@ -201,10 +267,99 @@
       src="https://kit.fontawesome.com/38da4a4dfb.js"
       crossorigin="anonymous"
     ></script>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+      // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+      // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-analytics.js";
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDKswYIjt0DcfuFVHZsfnkBHnWjNgLz9lE",
+        authDomain: "kc326-group14.firebaseapp.com",
+        databaseURL:
+          "https://kc326-group14-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "kc326-group14",
+        storageBucket: "kc326-group14.appspot.com",
+        messagingSenderId: "180963381215",
+        appId: "1:180963381215:web:35e6d21052c5eed7197e6a",
+        measurementId: "G-LT85VV1XX1",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      import {
+        getDatabase,
+        set,
+        get,
+        update,
+        remove,
+        ref,
+        child,
+      } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-database.js";
+      const db = getDatabase();
+      var updateBtn = document.getElementById("UpdateBtn");
+      var enterV1 = document.getElementById("points");
+      var v1 = document.getElementById("readHumid");
+      var v2 = document.getElementById("readTemp");
+
+      function FindData() {
+        const dbref = ref(db);
+        get(child(dbref, "App/"))
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              v1.innerHTML = "Độ ẩm: " + snapshot.val().Humidity + "%";
+              v2.innerHTML =
+                "Nhiệt độ: " +
+                snapshot.val().Temperature +
+                "<sup>o</sup>" +
+                "C";
+            } else {
+              console.log("No data found");
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      setInterval(FindData, 1000);
+
+      function UpdateData() {
+        update(ref(db, "Thing/"), {
+          SetTemp: enterV1.value,
+        })
+          .then(() => {
+            console.log("Data updated successfully");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      updateBtn.addEventListener("click", UpdateData);
+      // cái này là của bóng đèn--------------------------------------------------------------
+
+      const bongdenBtn = document.getElementById('lightbtn');
+
+      bongdenBtn.addEventListener('click', changeImage);
+
+      function changeImage() {
+        const image = document.getElementById("lighbulb");
+        if (image.src.match("bulbon")) {
+          image.src =
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/93927/pic_bulboff.gif";
+        } else {
+          image.src =
+            "https://s3-us-west-2.amazonaws.com/s.cdpn.io/93927/pic_bulbon.gif";
+        }
+      }
+    </script>
+
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../js/owl-carousel.js"></script>
     <script src="../js/animation.js"></script>
-    <script src="../js../imagesloaded.js"></script>
+    <script src="../js/imagesloaded.js"></script>
     <script src="../js/custom.js"></script>
   </body>
 </html>

@@ -89,6 +89,94 @@
       </nav>
     </header>
 
+    
+
+    <div class="house1" style="padding-top: 10%;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+            <div
+              class="section-heading wow fadeInLeft"
+              data-wow-duration="1s"
+              data-wow-delay="0.3s"
+            >
+              <h6 style="font-size: 35px;">Control House 2</h6>
+              <h4>Hậu Giang</h4>
+              <div class="line-dec"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div
+    class="container"
+    id="container-control section"
+
+    style="padding-top: 20px"
+  >
+    <div class="control">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="control-fan col">
+            <div class="container-fan">
+              <img src="../image/cover.png" alt="" class="cover" />
+              <img src="../image/blades.png" alt="" class="blades" />
+
+              <div class="controls d-flex justify-content-center" >
+                <button class="btn btn-0 active" data-nav="0">OFF</button>
+                <button class="btn btn-1" data-nav="1">1</button>
+                <button class="btn btn-2" data-nav="2">2</button>
+                <button class="btn btn-3" data-nav="3">3</button>
+              </div>
+            </div>
+          </div>
+            <div class="col d-flex align-items-center">
+              <div class="Cot1 justify-content-center">
+                <table class="tengicungduoc">
+                  <tr>
+                    <h3 id="readTemp" type="number"></h3>
+                  </tr>
+                  <tr>
+                    <h3 id="readHumid" type="number"></h3>
+                  </tr>
+                  <tr>
+                    <label for="points">Set nhiệt độ (19-24):</label>
+                    <input
+                      type="range"
+                      id="points"
+                      name="points"
+                      min="19"
+                      max="24"
+                    />
+                    <button type="button" id="UpdateBtn" onclick="light()">
+                      Update Data
+                    </button>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <!-- Cot2  -->
+            <div class="col">
+              <!-- Bóng đèn -->
+              <img
+                id="lighbulb"
+                src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/93927/pic_bulboff.gif"
+                width="200"
+                height="360"
+              />
+              <!-- nút nhấn bật tắt đèn -->
+              <!-- onclick="changeImage()" -->
+              <button type="button" id="lightbtn">
+                Bật/Tắt đèn
+              </button>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
     <!-- Footer -->
     <footer class="text-center text-dark" style="background-color: #c9f4aa">
       <!-- Grid container -->

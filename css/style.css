@@ -193,6 +193,13 @@ home
 
 }
 
+.accordion-item .accordion-header{
+  color: #198754;
+  font-size: 35px;
+  font-weight: 700;
+}
+
+
 /* 
 ---------------------------------------------
 Control
@@ -376,8 +383,83 @@ Control
 House 1
 --------------------------------------------- 
 */
+/*fan*/
+#container-control{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+}
 
 
+.control{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #F7FFF7;
+}
+
+.control .container-fan{
+  max-width: 250px;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.control-fan .container-fan .cover{
+  width: 100%;
+  padding-top: 10%;
+}
+
+.control .container-fan .blades{
+  width: 100%;
+  position: absolute;
+  top: 9%; bottom: 0;
+  left: 0; right: 0;
+  animation: rotating linear infinite;
+  animation-duration: 0s;
+}
+
+.controls .btn{
+  padding: 4px 10px;
+  margin: 5px;
+  background-color: #198754;
+  border: 2px solid #2d3032;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #2d3032;
+}
+
+.controls .btn.active{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -15px 12px -8px inset;
+}
+
+
+@keyframes rotating {
+  from {
+      -ms-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -webkit-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg);
+  }
+  to {
+      -ms-transform: rotate(360deg);
+      -moz-transform: rotate(360deg);
+      -webkit-transform: rotate(360deg);
+      -o-transform: rotate(360deg);
+      transform: rotate(360deg);
+  }
+}
+
+/*light control*/
+.control-light{
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 3vw;
+}
 
 /* 
 ---------------------------------------------
